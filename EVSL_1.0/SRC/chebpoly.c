@@ -619,7 +619,7 @@ int ChebAv0(csrMat *A, polparams *pol, double *v, double *y, double *w) {
     t = (k==1 ? t1:t2); 
     /*-------------------- Vkp1 = A*Vk - cc*Vk; */    
     s = mu[k];
-    matvec (A, vk, vkp1);
+    matvec_A(A, vk, vkp1);
     for (i=0; i<n; i++){
       vkp1[i] = t*(vkp1[i]-cc*vk[i]) - vkm1[i];
       //-------------------- for degree 2 and up: 

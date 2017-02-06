@@ -48,8 +48,8 @@
  *
  **/
 int ChebLanTr(csrMat *A, int lanm, int nev, double *intv, int maxit, 
-    double tol, double *vinit, polparams *pol, int *nev2, 
-    double **vals, double **W, double **resW, FILE *fstats) {
+              double tol, double *vinit, polparams *pol, int *nev2, 
+              double **vals, double **W, double **resW, FILE *fstats) {
   /*-------------------- for stats */
   double tm, tall=0.0, tmv=0.0;
   double tolP = tol;
@@ -368,7 +368,7 @@ res: related residual norms */
       DSCAL(&n, &t, y, &one);
       /*--------------------   w = A*y */
       //-- matvec
-      matvec(A, y, w);
+      matvec_A(A, y, w);
       nmv ++;
       /*--------------------   Ritzval: t3 = (y'*w)/(y'*y) */
       //-- Rayleigh quotient 

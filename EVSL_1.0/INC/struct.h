@@ -54,11 +54,9 @@ typedef struct _polparams {
  * data  needed  by  the  solver. 
  */
 typedef void (*linSolFunc)(int n, double *br, double *bz, double *xr, double *xz, void *data);
-/* [Real version] */
-typedef void (*linSolFunc_R)(int n, double *b, double *x, void *data);
 
 /* matvec function prototype */
-typedef void (*matvecFunc)(double *x, double *y, void *data);
+typedef void (*MVFunc)(double *x, double *y, void *data);
 
 typedef struct _ratparams {
   /* parameters for rational filter */
@@ -88,7 +86,7 @@ typedef struct _ratparams {
 
 typedef struct _externalMatvec {
   int n;
-  matvecFunc func;
+  MVFunc func;
   void *data;
 } externalMatvec;
 
@@ -96,12 +94,6 @@ typedef struct _externalMatvec {
 typedef struct _evsldata {
   /* external matvec routine and the associated data for A */
   externalMatvec Amatvec;
-  /* if has right-hand matrix B */
-  int hasB;
-  /* B = LB * LB^T is the Cholesky factorization of B
-   * function and associated data to perform y=LB \ x and y=LB' \ x */
-  //solverFunc_C LBsol, LBTsol;
-  /* functions to perform y=LB * x and y=LB' * x */
 } evslData;
 
 /* global variable: evslData */
